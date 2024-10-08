@@ -15,17 +15,15 @@ func StartServer() {
 
 	routes.ConfigureRoutes(r)
 
+	c := ConfigurationCORS()
+
+	handler := c.Handler(r)
+
 	s := &http.Server{
 		Addr:         "localhost:8080",
-		Handler:      handler{},
+		Handler:      handler,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
 	log.Fatal(s.ListenAndServe())
-}
-
-type handler struct{}
-
-func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
 }

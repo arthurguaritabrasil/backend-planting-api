@@ -1,12 +1,14 @@
 package routes
 
-import "backend/models"
+import (
+	"backend/models"
+)
 
 var Routes = map[string]models.Route{
 	"register": {
 		Path:         "/register",
 		Methods:      []string{"POST"},
-		Handler:      _,
+		Handler:      handlers.registerUser,
 		RequiredAuth: false,
 	},
 	"login": {
